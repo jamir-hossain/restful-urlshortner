@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\ShortenedUrl;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,8 +15,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/{slug}', function (Request $request) {
+    $shorted = ShortenedUrl::query()
+        ->where('slug', $request->slug)
+        ->first();
+
+    if ($shorted) {
+        $shorted->update([
+            'visit' => $shorted->visit + 1
+        ]);
+
+        return redirect()->to(url($shorted->main_url));
+    }
+
     return ['Laravel' => app()->version()];
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

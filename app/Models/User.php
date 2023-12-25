@@ -45,7 +45,7 @@ class User extends Authenticatable
     ];
 
 
-    public function user(): HasMany
+    public function shortenedUrls(): HasMany
     {
         return $this->hasMany(ShortenedUrl::class, 'user_id', 'id');
     }

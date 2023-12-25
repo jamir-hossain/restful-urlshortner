@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('slug');
             $table->integer('visit')->default(0);
-            $table->string('main');
+            $table->string('main_url');
+            $table->string('short_url');
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });

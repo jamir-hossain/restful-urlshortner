@@ -29,7 +29,9 @@ class ShortenedUrl extends Model
     protected $fillable = [
         'slug',
         'visit',
-        'main',
+        'main_url',
+        'short_url',
+        'user_id',
     ];
 
 
